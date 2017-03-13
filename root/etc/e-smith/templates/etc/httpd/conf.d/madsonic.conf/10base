@@ -4,6 +4,10 @@ my $status = ${'madsonic'}{'status'} || "disabled";
     return "    # madsonic is disabled in this VirtualHost"
            unless $status eq 'enabled';
 
+my $allow = (($madsonic{'webaccess'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
+my $tcp = $madsonic{'TCPPort'} || '4040';
+my $name = $madsonic{'Name'} || 'madsonic';
+
 $OUT .= qq(
 
 ###########################################################
@@ -11,40 +15,11 @@ $OUT .= qq(
 ############################################################
 
 
-ProxyPass /${'madsonic'}{Name} http://127.0.0.1:4040
-ProxyPassReverse /${'madsonic'}{Name} http://127.0.0.1:4040
-
-<Location /madsonic>
-AuthName "${'madsonic'}{'Name'}"
-order deny,allow
-deny from all
+ProxyPass /$name http://127.0.0.1:$tcp/$name
+ProxyPassReverse /$name http://127.0.0.1:$tcp/$name
+<Location /$name>
+AuthName "madsonic server"
+Require $allow
+</Location>
 );
-
-if (${'madsonic'}{'PublicAccess'} eq 'private')
-    {       
-    $OUT .= "allow from $localAccess\n";
-    } 
-
-elsif (${'madsonic'}{'PublicAccess'} eq 'public')
-    {
-    $OUT .= "allow from all\n";
-    }
-
-elsif (${'madsonic'}{'PublicAccess'} eq 'IP')
-    {
-    my @fixedip = split(/,/, (${'madsonic'}{'FixedIP'} || ""));
-    my $ipform ='';
-    foreach (@fixedip) {
-        $ipform = $ipform . ' ' . $_;
-        }
-    $OUT .= "allow from $ipform\n";
-    }
-
-elsif ((${'madsonic'}{'PublicAccess'} ne 'public') && (${'madsonic'}{'PublicAccess'} ne 'private'))
-    {
-    $OUT .= "allow from none\n";
-    }
-
-$OUT .= "</Location>";
 }
-

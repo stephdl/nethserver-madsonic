@@ -1,0 +1,9 @@
+#
+# 50madsonic
+#
+{
+my $name = $madsonic{'Name'} || 'madsonic';
+
+$OUT .= "   RewriteEngine On\n";
+$OUT .= "   RewriteRule ^/$name(/.*)?\$     https://%{HTTP_HOST}/$name\$1 [R=301,L]\n";
+}
