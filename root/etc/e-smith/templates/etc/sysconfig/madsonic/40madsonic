@@ -1,0 +1,55 @@
+#
+# This is the configuration file for the Madsonic service
+# (/etc/init.d/madsonic)
+#
+# To change the startup parameters of Madsonic, modify
+# the SUBSONIC_ARGS variable below.
+#
+# Type "madsonic --help" on the command line to read an
+# explanation of the different options.
+#
+# For example, to specify that Madsonic should use port 80 (for http)
+# and 443 (for https), and use a Java memory heap size of 350 MB, use
+# the following:
+#
+# SUBSONIC_ARGS="--port=80 --https-port=443 --max-memory=350"
+
+
+SUBSONIC_ARGS="{
+my $madhome = $madsonic{'home'} || "/var/madsonic";
+my $madhost = $madsonic{'host'} || "0.0.0.0";
+my $madport = $madsonic{'TCPPort'} || "4040";
+my $madpath = $madsonic{'Name'} || "madsonic";
+my $madhttps_port = $madsonic{'https_port'} || "0";
+my $madinitmem  = $madsonic{'InitMemory'} || "250";
+my $madmem  = $madsonic{'MaxMemory'} || "350";
+my $madpid  = $madsonic{'PIDfile'} || "";
+my $madmusic = $madsonic{'Music_Folder'} || "/var/lib/music";
+my $madpod  = $madsonic{'Podcast_Folder'} || "/var/lib/music/Podcast";
+my $madplay = $madsonic{'Playlist_Folder'} || "/var/lib/music/playlists";
+my $madquiet = $madsonic{'quiet'} || "0";
+
+
+$OUT .= "--max-memory=$madmem --context-path='/$madpath'";
+
+$OUT .= " --home='$madhome'" unless $madhome eq "/var/madsonic";
+$OUT .= " --host='$madhost'" unless $madhost eq "0.0.0.0";
+$OUT .= " --port='$madport'" unless $madport == "4040";
+$OUT .= " --https-port='$madhttps_port'" unless $madhttps_port eq "0";
+$OUT .= " --pidfile='$madpid'" unless $madpid eq "";
+$OUT .= " --quiet" unless $madquiet eq "0";
+$OUT .= " --default-music-folder='$madmusic'" unless $madmusic eq "/var/lib/music";
+$OUT .= " --default-podcast-folder='$madpod'" unless $madpod eq "/var/lib/music/Podcast";
+$OUT .= " --default-playlist-folder='$madplay'" unless $madplay  eq "/var/lib/music/playlists";
+$OUT .= " --init-memory=$madinitmem";
+$OUT .= " --max-memory=$madmem";
+}"
+
+
+# The user which should run the Mabsonic process. Default "root".
+# Note that non-root users are by default not allowed to use ports
+# below 1024. Also make sure to grant the user write permissions in
+# the music directories, otherwise changing album art and tags will fail.
+
+SUBSONIC_USER=madsonic
+

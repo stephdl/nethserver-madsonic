@@ -1,0 +1,21 @@
+#!/usr/bin/perl -w
+
+use esmith::Build::CreateLinks qw(:all);
+
+####################
+# links to add
+my $event = "nethserver-ddclient-update";
+
+# templates to expand
+    templates2events( "/etc/sysconfig/madsonic" , $event);
+    templates2events( "/etc/httpd/conf.d/madsonic.conf" , $event);
+
+# services to launch on event
+event_services($event, 'madsonic' => 'restart');
+event_services($event, 'httpd' => 'restart');
+
+
+# Action to do 
+
+event_actions($event, 
+'initialize-default-databases' => '00');
