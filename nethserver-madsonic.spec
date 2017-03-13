@@ -38,7 +38,7 @@ grep '^madsonic:' /etc/passwd > /dev/null || \
 %build
 %{makedocs}
 perl createlinks
-%{__mkdir} -p $RPM_BUILD_ROOT/var/lib/madsonic
+%{__mkdir} -p root/var/lib/madsonic
 
 %install
 rm -rf $RPM_BUILD_ROOT
