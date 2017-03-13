@@ -44,7 +44,7 @@ perl createlinks
 rm -rf $RPM_BUILD_ROOT
 (cd root ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
 rm -f %{name}-%{version}-filelist
-/sbin/e-smith/genfilelist $RPM_BUILD_ROOT \
+%{genfilelist} $RPM_BUILD_ROOT \
   --dir /var/lib/madsonic 'attr(0755,madsonic,madsonic)' \
      > %{name}-%{version}-filelist
 
