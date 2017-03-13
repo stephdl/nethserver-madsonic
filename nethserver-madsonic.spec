@@ -7,7 +7,7 @@ Version: %{version}
 Release: %{release}%{?dist}
 Distribution: Nethserver
 License: GNU GPL version 3
-Source: smeserver-madsonic-%{version}.tar.gz
+Source: %{name}-%{version}.tar.gz
 BuildArch: noarch
 BuildRoot: /var/tmp/%{name}-%{version}-buildroot
 BuildRequires: nethserver-devtools
