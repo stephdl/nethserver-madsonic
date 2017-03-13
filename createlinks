@@ -4,7 +4,7 @@ use esmith::Build::CreateLinks qw(:all);
 
 ####################
 # links to add
-my $event = "nethserver-ddclient-update";
+my $event = "nethserver-madsonic-update";
 
 # templates to expand
     templates2events( "/etc/sysconfig/madsonic" , $event);
