@@ -40,7 +40,7 @@ if ($sssd->isAD()) {
     );
     }
 
-elsif ($sssd->isLdap()) {
+else {
 
     $OUT .= qq (
     #
