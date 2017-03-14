@@ -44,5 +44,5 @@ $OUT .= " --init-memory=$madinitmem";
 # below 1024. Also make sure to grant the user write permissions in
 # the music directories, otherwise changing album art and tags will fail.
 
-SUBSONIC_USER=madsonic
+SUBSONIC_USER=root
 
