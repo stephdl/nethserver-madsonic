@@ -12,6 +12,7 @@ BuildArch: noarch
 BuildRoot: /var/tmp/%{name}-%{version}-buildroot
 BuildRequires: nethserver-devtools
 Requires: madsonic 
+Requires: nethserver-httpd
 #Requires: ffmpeg
 Requires: java-1.7.0-openjdk >= 1.7
 AutoReqProv: no
