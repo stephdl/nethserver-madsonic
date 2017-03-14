@@ -38,9 +38,9 @@ $OUT .= " --port='$madport'" unless $madport == "4040";
 $OUT .= " --https-port='$madhttps_port'" unless $madhttps_port eq "0";
 $OUT .= " --pidfile='$madpid'" unless $madpid eq "";
 $OUT .= " --quiet" unless $madquiet eq "0";
-$OUT .= " --default-music-folder='$madmusic'" unless $madmusic eq "/var/lib/music";
-$OUT .= " --default-podcast-folder='$madpod'" unless $madpod eq "/var/lib/music/Podcast";
-$OUT .= " --default-playlist-folder='$madplay'" unless $madplay  eq "/var/lib/music/playlists";
+$OUT .= " --default-music-folder='$madmusic'" ;#unless $madmusic eq "/var/lib/music";
+$OUT .= " --default-podcast-folder='$madpod'" ;#unless $madpod eq "/var/lib/music/Podcast";
+$OUT .= " --default-playlist-folder='$madplay'" ;#unless $madplay  eq "/var/lib/music/playlists";
 $OUT .= " --init-memory=$madinitmem";
 $OUT .= " --max-memory=$madmem";
 }"
