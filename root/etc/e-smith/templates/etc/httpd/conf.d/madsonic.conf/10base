@@ -11,7 +11,7 @@ $OUT .= qq(
 ############################################################
 
 
-ProxyPass /${'madsonic'}{Name} http://127.0.0.1:4040
+ProxyPass /${'madsonic'}{Name} http://127.0.0.1:4040 retry=0 timeout=5
 ProxyPassReverse /${'madsonic'}{Name} http://127.0.0.1:4040
 
 <Location /madsonic>
