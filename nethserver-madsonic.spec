@@ -54,6 +54,7 @@ rm -f %{name}-%{version}-filelist
   --dir /var/media/artists 'attr(0755,madsonic,madsonic)' \
   --dir /var/media/incoming 'attr(0755,madsonic,madsonic)' \
   --dir /var/media/podcast 'attr(0755,madsonic,madsonic)' \
+  --dir /var/media/playlists 'attr(0755,madsonic,madsonic)' \
   --dir /var/media/playlists/import 'attr(0755,madsonic,madsonic)' \
   --dir '/var/media/playlists/export' 'attr(0755,madsonic,madsonic)' \
   --dir /var/media/playlists/backup 'attr(0755,madsonic,madsonic)' \
