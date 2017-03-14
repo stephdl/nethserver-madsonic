@@ -12,7 +12,7 @@ BuildArch: noarch
 BuildRoot: /var/tmp/%{name}-%{version}-buildroot
 BuildRequires: nethserver-devtools
 Requires: madsonic 
-Requires: nethserver-httpd
+Requires: nethserver-httpd nethserver-ibays nethserver-samba
 #Requires: ffmpeg
 Requires: java-1.8.0-openjdk
 AutoReqProv: no
@@ -21,6 +21,8 @@ AutoReqProv: no
 madsonic is an application adapted as a contrib for nethserver
 
 %changelog
+*Tue Mar 14 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 6.2.9040
+- Release for Nethserver 7
 
 * Mon Jun 16 2014 JP Pialasse <tests@pialasse.com> 5.0.3761-1.sme
 - initial import to SME9 contribs
