@@ -21,8 +21,8 @@ my $madhost = $madsonic{'host'} || "0.0.0.0";
 my $madport = $madsonic{'TCPPort'} || "4040";
 my $madpath = $madsonic{'Name'} || "madsonic";
 my $madhttps_port = $madsonic{'https_port'} || "0";
-my $madinitmem  = $madsonic{'InitMemory'} || "250";
-my $madmem  = $madsonic{'MaxMemory'} || "350";
+my $madinitmem  = $madsonic{'InitMemory'} || "256";
+my $madmem  = $madsonic{'MaxMemory'} || "512";
 my $madpid  = $madsonic{'PIDfile'} || "";
 my $madquiet = $madsonic{'quiet'} || "0";
 
@@ -36,7 +36,6 @@ $OUT .= " --https-port='$madhttps_port'" unless $madhttps_port eq "0";
 $OUT .= " --pidfile='$madpid'" unless $madpid eq "";
 $OUT .= " --quiet" unless $madquiet eq "0";
 $OUT .= " --init-memory=$madinitmem";
-$OUT .= " --max-memory=$madmem";
 }"
 
 
