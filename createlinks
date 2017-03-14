@@ -20,5 +20,6 @@ event_services($event, 'nmb' => 'restart');
 
 # Action to do 
 event_actions($event, 
-'initialize-default-databases' => '00',
-'firewall-adjust' => '95);
+'initialize-default-databases' => '00');
+event_actions($event,
+'firewall-adjust' => '10');
