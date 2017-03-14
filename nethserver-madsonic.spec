@@ -43,7 +43,7 @@ perl createlinks
 %{__mkdir} -p root/var/media/incoming
 %{__mkdir} -p root/var/media/podcast
 %{__mkdir} -p root/var/media/playlists/import
-%{__mkdir} -p root/var/media/playlists/export
+%{__mkdir} -p 'root/var/media/playlists/export'
 %{__mkdir} -p root/var/media/playlists/backup
 
 %install
@@ -55,7 +55,7 @@ rm -f %{name}-%{version}-filelist
   --dir /var/media/incoming 'attr(0755,madsonic,madsonic)' \
   --dir /var/media/podcast 'attr(0755,madsonic,madsonic)' \
   --dir /var/media/playlists/import 'attr(0755,madsonic,madsonic)' \
-  --dir /var/media/playlists/export 'attr(0755,madsonic,madsonic)' \
+  --dir '/var/media/playlists/export' 'attr(0755,madsonic,madsonic)' \
   --dir /var/media/playlists/backup 'attr(0755,madsonic,madsonic)' \
      > %{name}-%{version}-filelist
 
