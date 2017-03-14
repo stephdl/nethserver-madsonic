@@ -39,14 +39,24 @@ grep '^madsonic:' /etc/passwd > /dev/null || \
 %build
 %{makedocs}
 perl createlinks
-%{__mkdir} -p root/var/lib/madsonic
+%{__mkdir} -p root/var/media/artists
+%{__mkdir} -p root/var/media/incoming
+%{__mkdir} -p root/var/media/podcast
+%{__mkdir} -p root/var/media/playlists/import
+%{__mkdir} -p root/var/media/playlists/export
+%{__mkdir} -p root/var/media/playlists/backup
 
 %install
 rm -rf $RPM_BUILD_ROOT
 (cd root ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
 rm -f %{name}-%{version}-filelist
 %{genfilelist} $RPM_BUILD_ROOT \
-  --dir /var/lib/madsonic 'attr(0755,madsonic,madsonic)' \
+  --dir /var/media/artists 'attr(0755,madsonic,madsonic)' \
+  --dir /var/media/incoming 'attr(0755,madsonic,madsonic)' \
+  --dir /var/media/podcast 'attr(0755,madsonic,madsonic)' \
+  --dir /var/media/playlists/import 'attr(0755,madsonic,madsonic)' \
+  --dir /var/media/playlists/export 'attr(0755,madsonic,madsonic)' \
+  --dir /var/media/playlists/backup 'attr(0755,madsonic,madsonic)' \
      > %{name}-%{version}-filelist
 
 %clean
