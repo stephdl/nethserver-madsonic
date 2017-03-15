@@ -18,7 +18,7 @@ class Madsonic extends \Nethgui\Module\AbstractModule implements \NethServer\Mod
          $port = $this->getPlatform()->getDatabase('configuration')->getProp('madsonic','TCPPort');
          $host = explode(':',$_SERVER['HTTP_HOST']);
          return array(
-            'url' => "https://".$host[0].":$port",
+            'url' => "http://".$host[0].":$port",
          );
     }
 }
