@@ -14,7 +14,7 @@ BuildRequires: nethserver-devtools
 Requires: madsonic 
 Requires: nethserver-httpd nethserver-ibays nethserver-samba
 #Requires: ffmpeg
-Requires: java-1.7.0-openjdk
+Requires: java-1.8.0-openjdk
 AutoReqProv: no
 
 %description
