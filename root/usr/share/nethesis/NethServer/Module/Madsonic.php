@@ -22,6 +22,7 @@ class Madsonic extends \Nethgui\Controller\AbstractController
         parent::initialize();
         $this->declareParameter('status', Validate::SERVICESTATUS, array('configuration', 'madsonic', 'status'));
         $this->declareParameter('SambaUsers', Validate::ANYTHING, array('configuration', 'madsonic', 'SambaUsers'));
+        $this->declareParameter('TCPPort', Validate::PORTNUMBER, array('configuration', 'madsonic', 'TCPPort'));
         $this->declareParameter('access', $this->createValidator()->memberOf('green','red'), array('configuration', 'madsonic', 'access'));
     }
 

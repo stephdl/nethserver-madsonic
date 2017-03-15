@@ -10,6 +10,7 @@ echo $view->panel()
 
 ->insert($view->radioButton('access', 'green'))
 ->insert($view->radioButton('access', 'red'))
+->insert($view->textInput('TCPPort'))
 
 ->insert($view->textArea('SambaUsers', $view::LABEL_ABOVE)->setAttribute('dimensions', '5x30')->setAttribute('placeholder', $view['Users_default']))
 
