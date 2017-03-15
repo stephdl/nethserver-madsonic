@@ -20,7 +20,7 @@ if ($sssd->isAD()) {
     );
 
 
-    my @Suser = split(/\s+/, (${'madsonic'}{'SambaUsers'} || ""));
+    my @Suser = split(/,/, (${'madsonic'}{'SambaUsers'} || ""));
     my $Suser ="admin admin\@$DomainName";
     foreach (@Suser) {
         $Suser = $Suser . ' ' . $_;
