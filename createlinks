@@ -9,11 +9,13 @@ my $event = "nethserver-madsonic-update";
 # templates to expand
     templates2events( "/etc/sysconfig/madsonic" , $event);
     templates2events( "/etc/samba/smb.conf" , $event );
+    templates2events("/etc/httpd/conf.d/madsonic.conf", $event);
 
 # services to launch on event
 event_services($event, 'madsonic' => 'restart');
 event_services($event, 'smb' => 'restart');
 event_services($event, 'nmb' => 'restart');
+event_services($event, 'httpd' => 'restart');
 
 
 # Action to do 

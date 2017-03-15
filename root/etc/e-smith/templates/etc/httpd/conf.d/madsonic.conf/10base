@@ -1,0 +1,39 @@
+{ 
+
+my $status = ${'madsonic'}{'status'} || "disabled";
+    return "    # madsonic is disabled in this VirtualHost"
+           unless $status eq 'enabled';
+
+$OUT .= qq(
+
+###########################################################
+########       madsonic reverse proxy         ##########
+############################################################
+
+
+ProxyPass /${'madsonic'}{Name} http://127.0.0.1:4040 retry=0 timeout=5
+ProxyPassReverse /${'madsonic'}{Name} http://127.0.0.1:4040
+
+<Location /madsonic>
+AuthName "${'madsonic'}{'Name'}"
+order deny,allow
+deny from all
+);
+
+if (${'madsonic'}{'access'} eq 'green')
+    {       
+    $OUT .= "allow from $localAccess\n";
+    } 
+
+elsif (${'madsonic'}{'access'} eq 'red')
+    {
+    $OUT .= "allow from all\n";
+    }
+
+elsif ((${'madsonic'}{'PublicAccess'} ne 'public') && (${'madsonic'}{'PublicAccess'} ne 'private'))
+    {
+    $OUT .= "allow from none\n";
+    }
+
+$OUT .= "</Location>";
+}
