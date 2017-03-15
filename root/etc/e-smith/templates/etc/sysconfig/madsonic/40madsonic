@@ -15,7 +15,7 @@
 # SUBSONIC_ARGS="--port=80 --https-port=443 --max-memory=350"
 
 
-SUBSONIC_ARGS="{
+MADSONIC_ARGS="{
 my $madhome = $madsonic{'home'} || "/var/madsonic";
 my $madhost = $madsonic{'host'} || "0.0.0.0";
 my $madport = $madsonic{'TCPPort'} || "4040";
@@ -44,5 +44,4 @@ $OUT .= " --init-memory=$madinitmem";
 # below 1024. Also make sure to grant the user write permissions in
 # the music directories, otherwise changing album art and tags will fail.
 
-SUBSONIC_USER=madsonic
-
+MADSONIC_USER=madsonic
