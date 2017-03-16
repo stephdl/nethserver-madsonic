@@ -34,3 +34,4 @@ $OUT .= qq(
    ProxyPassReverse / http://127.0.0.1:tcp/
 </VirtualHost>
 );
+}
