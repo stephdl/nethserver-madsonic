@@ -15,11 +15,11 @@ my $event = "nethserver-madsonic-update";
 event_services($event, 'madsonic' => 'restart');
 event_services($event, 'smb' => 'restart');
 event_services($event, 'nmb' => 'restart');
-event_services($event, 'httpd' => 'restart');
 
 
 # Action to do 
 event_actions($event, 
-'initialize-default-databases' => '00');
+'initialize-default-databases' => '00',
+'nethserver-madsonic-httpd-restart' => '95');
 event_actions($event,
 'firewall-adjust' => '10');
