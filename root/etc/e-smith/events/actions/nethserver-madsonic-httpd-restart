@@ -1,0 +1,2 @@
+#!/usr/bin/perl
+system ('/usr/bin/systemctl restart httpd') or die 'cannot restart httpd';
