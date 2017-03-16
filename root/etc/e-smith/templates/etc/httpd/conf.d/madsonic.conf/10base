@@ -29,11 +29,5 @@ elsif (${'madsonic'}{'access'} eq 'red')
     {
     $OUT .= "allow from all\n";
     }
-
-elsif ((${'madsonic'}{'PublicAccess'} ne 'public') && (${'madsonic'}{'PublicAccess'} ne 'private'))
-    {
-    $OUT .= "allow from none\n";
-    }
-
 $OUT .= "</Location>";
 }
