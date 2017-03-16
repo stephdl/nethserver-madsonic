@@ -27,7 +27,7 @@ my $madpid  = $madsonic{'PIDfile'} || "";
 my $madquiet = $madsonic{'quiet'} || "0";
 
 
-$OUT .= "--max-memory=$madmem --context-path='/$madpath'";
+$OUT .= "--max-memory=$madmem";
 
 $OUT .= " --home='$madhome'" unless $madhome eq "/var/madsonic";
 $OUT .= " --host='$madhost'" unless $madhost eq "0.0.0.0";

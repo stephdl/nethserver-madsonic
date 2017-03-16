@@ -4,6 +4,12 @@ my $status = ${'madsonic'}{'status'} || "disabled";
     return "    # madsonic is disabled in this VirtualHost"
            unless $status eq 'enabled';
 
+    my $cert = $pki{'CrtFile'} || '/etc/pki/tls/certs/NSRV.crt';
+    my $key = $pki{'KeyFile'} || '/etc/pki/tls/private/NSRV.key';
+    my $domain = $madsonic{'DomainName'} || $madsonic{'Name'}.'.'.$DomainName;
+    my $allow = (($madsonic{'access'} || 'green') eq 'red') ? 'all granted':"ip $localAccess";
+    my $tcp = $madsonic{'TCPPort'} || '4040';
+
 $OUT .= qq(
 
 ###########################################################
@@ -11,23 +17,20 @@ $OUT .= qq(
 ############################################################
 
 
-ProxyPass /${'madsonic'}{Name} http://127.0.0.1:4040 retry=0 timeout=5
-ProxyPassReverse /${'madsonic'}{Name} http://127.0.0.1:4040
+<VirtualHost *:80>
+    ServerName $domain
+    Redirect permanent / https://$domain
+</VirtualHost>
 
-<Location /madsonic>
-AuthName "${'madsonic'}{'Name'}"
-order deny,allow
-deny from all
+<VirtualHost *:443>
+   ServerName $domain
+    SSLEngine on
+    SSLCertificateFile "$cert"
+    SSLCertificateKeyFile "$key"
+    <Proxy *>
+    Require $allow
+    </Proxy>
+   ProxyPass / http://127.0.0.1:$tcp/
+   ProxyPassReverse / http://127.0.0.1:tcp/
+</VirtualHost>
 );
-
-if (${'madsonic'}{'access'} eq 'green')
-    {       
-    $OUT .= "allow from $localAccess\n";
-    } 
-
-elsif (${'madsonic'}{'access'} eq 'red')
-    {
-    $OUT .= "allow from all\n";
-    }
-$OUT .= "</Location>";
-}
