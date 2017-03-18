@@ -32,9 +32,6 @@ madsonic is an application adapted as a contrib for nethserver
 - builds from unchanged .tar.gz 
 
 %pre
-#grep '^madsonic:' /etc/passwd > /dev/null || \
-#/usr/sbin/useradd -c "madsonic" -M -d /usr/share/madsonic   -s /bin/bash madsonic
-
 if ! getent group madsonic >& /dev/null; then
   groupadd -f -r madsonic
 fi
