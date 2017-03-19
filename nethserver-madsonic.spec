@@ -1,5 +1,5 @@
 %define name nethserver-madsonic
-%define version 0.1.1
+%define version 0.0.1
 %define release 1
 Summary: madsonic is a helpdesk system
 Name: %{name}
@@ -14,15 +14,15 @@ BuildRequires: nethserver-devtools
 Requires: madsonic >= 6.2 
 Requires: nethserver-httpd nethserver-ibays nethserver-samba
 #Requires: ffmpeg
-Requires: java-1.8.0-openjdk
+Requires: java-1.7.0-openjdk
 AutoReqProv: no
 
 %description
 madsonic is an application adapted as a contrib for nethserver
 
 %changelog
-*Tue Mar 14 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.1-1
-- Release for Nethserver 7
+*Tue Mar 14 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.1-1
+- Release for Nethserver 6
 
 * Mon Jun 16 2014 JP Pialasse <tests@pialasse.com> 5.0.3761-1.sme
 - initial import to SME9 contribs

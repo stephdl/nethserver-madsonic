@@ -4,7 +4,7 @@ my $status = ${'madsonic'}{'status'} || "disabled";
     return "    # madsonic is disabled in this VirtualHost"
            unless $status eq 'enabled';
 
-my $allow = (($madsonic{'webaccess'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
+my $allow = (($madsonic{'webaccess'} || 'private') eq 'public') ? 'all':"$localAccess";
 my $tcp = $madsonic{'TCPPort'} || '4040';
 my $name = $madsonic{'Name'} || 'madsonic';
 
@@ -19,7 +19,8 @@ ProxyPass /$name http://127.0.0.1:$tcp/$name
 ProxyPassReverse /$name http://127.0.0.1:$tcp/$name
 <Location /$name>
 AuthName "madsonic server"
-Require $allow
+Order Allow,Deny
+Allow from $allow
 </Location>
 );
 }

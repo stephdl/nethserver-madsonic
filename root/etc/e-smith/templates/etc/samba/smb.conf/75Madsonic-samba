@@ -1,6 +1,4 @@
 {
-use NethServer::SSSD;
-our $sssd = new NethServer::SSSD();
 
 my $status = $madsonic{'status'} || "disabled";
     return "    # madsonic is disabled in smb.conf"
@@ -8,7 +6,6 @@ my $status = $madsonic{'status'} || "disabled";
 
 my $name = $madsonic{'Name'} || 'madsonic';
 
-if ($sssd->isAD()) {
 
     $OUT .= qq (
     #
@@ -21,7 +18,7 @@ if ($sssd->isAD()) {
 
 
     my @Suser = split(/,/, (${'madsonic'}{'SambaUsers'} || ""));
-    my $Suser ="admin admin\@$DomainName";
+    my $Suser ="admin";
     foreach (@Suser) {
         $Suser = $Suser . ' ' . $_;
     }
@@ -38,26 +35,5 @@ if ($sssd->isAD()) {
     create mode = 0644
     directory mask = 0755
     );
-    }
 
-else {
-
-    $OUT .= qq (
-    #
-    # Madsonic Music share
-    #
-    [$name]
-    comment = Madsonic Music folder
-    path = /var/media
-    force user = madsonic
-    force group = madsonic
-    read only = no
-    browseable = yes
-    writeable = yes
-    guest ok = yes
-    create mode = 0644
-    directory mask = 0755
-    );
-    }
 }
-
