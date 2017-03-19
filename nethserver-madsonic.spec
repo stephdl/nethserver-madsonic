@@ -73,5 +73,3 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
 %doc COPYING
-%dir %{_nseventsdir}/%{name}-update
-
