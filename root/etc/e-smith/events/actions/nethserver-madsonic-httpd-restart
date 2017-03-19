@@ -1,2 +1,2 @@
-#!/usr/bin/bash
-/usr/bin/systemctl restart httpd
+#!/bin/bash
+/sbin/service httpd restart
