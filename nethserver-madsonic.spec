@@ -1,5 +1,5 @@
 %define name nethserver-madsonic
-%define version 0.0.3
+%define version 0.0.4
 %define release 1
 Summary: madsonic is a helpdesk system
 Name: %{name}
@@ -21,10 +21,13 @@ AutoReqProv: no
 madsonic is an application adapted as a contrib for nethserver
 
 %changelog
-* Sun Sep 10 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.3-1.ns7
+* Sat Nov 11 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.4-1.ns6
+- Find the dlna port and open it in the firewall
+
+* Sun Sep 10 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.3-1.ns6
 - Restart httpd service on trusted-network
 
-* Wed Mar 29 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.2-1.ns7
+* Wed Mar 29 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.2-1.ns6
 - Template expansion on trusted-network
 
 *Tue Mar 14 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.1-1
