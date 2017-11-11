@@ -20,9 +20,10 @@ event_services($event, 'nmb' => 'restart');
 # Action to do 
 event_actions($event, 
 'initialize-default-databases' => '00',
-'nethserver-madsonic-httpd-restart' => '95');
-event_actions($event,
-'firewall-adjust' => '10');
+'nethserver-madsonic-httpd-restart' => '95',
+'nethserver-madsonic-find-dlna-port' => '99');
+#event_actions($event,
+#'firewall-adjust' => '10');
 
 my $event = 'trusted-networks-modify';
 templates2events("/etc/httpd/conf.d/madsonic.conf", $event);
