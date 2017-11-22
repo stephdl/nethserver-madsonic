@@ -28,5 +28,9 @@ TCPPortDlna=$(echo $(netstat -tlpn | grep $(cat /var/run/madsonic.pid) |
     grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b:[0-9]+" | 
     sed 's/[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}://g'))
 
-/sbin/e-smith/config set madsonic-dlna service TCPPort $TCPPortDlna access private status enabled
-/sbin/e-smith/signal-event firewall-adjust
+UDPPortDlna=$(echo $(netstat -ulpn | grep $(cat /var/run/madsonic.pid) | 
+    grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b:[0-9]+" | 
+    sed 's/[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}://g'))
+
+/usr/sbin/e-smith/config set madsonic-dlna service TCPPort $TCPPortDlna UDPPorts 1900,$UDPPortDlna access green status enabled
+/usr/sbin/e-smith/signal-event firewall-adjust
