@@ -1,5 +1,5 @@
 %define name nethserver-madsonic
-%define version 0.1.8
+%define version 0.1.9
 %define release 1
 Summary: madsonic is a helpdesk system
 Name: %{name}
@@ -21,7 +21,7 @@ AutoReqProv: no
 madsonic is an application adapted as a contrib for nethserver
 
 %changelog
-* Sun Nov 22 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.8-1.ns7
+* Sun Nov 22 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.9-1.ns7
 - find the UDP ports for dlna
 
 * Sun Nov 12 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.7-1.ns7
