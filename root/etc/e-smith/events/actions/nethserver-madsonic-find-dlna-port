@@ -19,30 +19,43 @@ do
 done
 
 #other method, could be interesting also
-#TCPPortDlna=$(echo $(netstat -tlpn | 
-#grep $(netstat -tlpn | grep 4040 | 
-#cut -c 80-84 | awk '{$1=$1};1') | 
+#TCPPortDlna=$(echo $(netstat -tlpn |
+#grep $(netstat -tlpn | grep 4040 |
+#cut -c 80-84 | awk '{$1=$1};1') |
 #cut -d "." -f 4 | cut -d ":" -f 2))
 
-TCPPortDlna=$(echo $(netstat -tlpn | grep $(cat /var/run/madsonic.pid) | 
-    grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b:[0-9]+" | 
-    sed 's/[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}://g'))
+TCPPortDlna=$(echo $(netstat -tlpn | grep $(cat /var/run/madsonic.pid) |
+    grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b:[0-9]+" |
+    sed 's/[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}://g') |
+    sed 's/ /,/g')
 
-UDPPortDlna=$(echo $(netstat -ulpn | grep $(cat /var/run/madsonic.pid) | 
-    grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b:[0-9]+" | 
-    sed 's/[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}://g'))
+UDPPortDlna=$(echo $(netstat -ulpn | grep $(cat /var/run/madsonic.pid) |
+    grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b:[0-9]+" |
+    sed 's/[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}://g') |
+    sed 's/ /,/g')
 
 #make a regex to test if the port is right
 re='^[0-9]+$'
 
-if ! [[ $TCPPortDlna =~ $re ]] || [[ $UDPPortDlna -gt 65536 ]]; then
-   echo "Madsonic DLNA error: Not a TCP Port"
-   exit 1
-fi
-if ! [[ $UDPPortDlna =~ $re ]] || [[ $UDPPortDlna -gt 65536 ]]; then
-   echo "Madsonic DLNA error: Not a UDP Port"
-   exit 1
-fi
+#Split the array to find each port and test it
+IFS=', ' read -r -a array <<< "$TCPPortDlna"
+for element in "${array[@]}"
+do
+    if ! [[ $element =~ $re ]] || [[ $element -gt 65536 ]]; then
+        echo "Madsonic DLNA error: $element Not a TCP Port"
+        exit 1
+    fi
+done
 
-/usr/sbin/e-smith/config set madsonic-dlna service TCPPort $TCPPortDlna UDPPorts 1900,$UDPPortDlna access green status enabled
+#Split the array to find each port and test it
+IFS=', ' read -r -a array <<< "$UDPPortDlna"
+for element in "${array[@]}"
+do
+    if ! [[ $element =~ $re ]] || [[ $element -gt 65536 ]]; then
+        echo "Madsonic DLNA error: $element Not a UDP Port"
+        exit 1
+    fi
+done
+
+/usr/sbin/e-smith/config set madsonic-dlna service TCPPorts $TCPPortDlna UDPPorts 1900,$UDPPortDlna access green status enabled
 /usr/sbin/e-smith/signal-event firewall-adjust
