@@ -57,5 +57,7 @@ do
     fi
 done
 
-/usr/sbin/e-smith/config set madsonic-dlna service TCPPorts $TCPPortDlna UDPPorts 1900,$UDPPortDlna access green status enabled
-/usr/sbin/e-smith/signal-event firewall-adjust
+TCPMADSONIC=$(/sbin/e-smith/db configuration getprop madsonic TCPPort)
+
+/sbin/e-smith/db configuration set madsonic-dlna service TCPPorts $TCPMADSONIC,$TCPPortDlna UDPPorts 1900,$UDPPortDlna access green status enabled
+/sbin/e-smith/signal-event firewall-adjust
