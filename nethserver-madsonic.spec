@@ -1,5 +1,5 @@
 %define name nethserver-madsonic
-%define version 0.0.9
+%define version 0.0.10
 %define release 1
 Summary: madsonic is a helpdesk system
 Name: %{name}
@@ -11,7 +11,7 @@ Source: %{name}-%{version}.tar.gz
 BuildArch: noarch
 BuildRoot: /var/tmp/%{name}-%{version}-buildroot
 BuildRequires: nethserver-devtools
-Requires: madsonic >= 6.2 
+Requires: madsonic >= 6.2
 Requires: nethserver-httpd nethserver-ibays nethserver-samba
 #Requires: ffmpeg
 Requires: java-1.7.0-openjdk
@@ -21,6 +21,9 @@ AutoReqProv: no
 madsonic is an application adapted as a contrib for nethserver
 
 %changelog
+* Sat Nov 25 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.10-1.ns6
+- handle the multi NIC case for finding the dlna port
+
 * Sun Nov 22 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.9-1.ns6
 - find the UDP ports for dlna
 
@@ -47,7 +50,7 @@ madsonic is an application adapted as a contrib for nethserver
 
 * Wed Nov 20 2013  CONTRIB MAKER <tests@pialasse.com> 5.0.3760-2.sme
 - initial release
-- builds from unchanged .tar.gz 
+- builds from unchanged .tar.gz
 
 %pre
 if ! getent group madsonic >& /dev/null; then
