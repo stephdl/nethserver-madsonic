@@ -10,11 +10,11 @@ do
     if [ "$Test" ];then
         break
     fi
-    if [ "$count" == 30 ]; then
+    if [ "$count" == 15 ]; then
        echo "we cannot wait more for madsonic"
        exit 1
     fi
-    sleep 1
+    sleep 2
     let "count++"
 done
 
