@@ -10,16 +10,16 @@ do
     if [ "$Test" ];then
         break
     fi
-    if [ "$count" == 30 ]; then
+    if [ "$count" == 15 ]; then
        echo "we cannot wait more for madsonic"
        exit 1
     fi
-    sleep 1
+    sleep 2
     let "count++"
 done
 
 #other method, could be interesting also
-#TCPPortDlna=$(echo $(netstat -tlpn | 
+#TCPPortDlna=$(echo $(netstat -tlpn |
 #grep $(netstat -tlpn | grep 4040 |
 #cut -c 80-84 | awk '{$1=$1};1') |
 #cut -d "." -f 4 | cut -d ":" -f 2))
