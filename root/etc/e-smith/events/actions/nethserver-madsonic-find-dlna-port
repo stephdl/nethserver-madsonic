@@ -59,6 +59,7 @@ do
 done
 
 TCPMADSONIC=$(/sbin/e-smith/db configuration getprop madsonic TCPPort)
+TCPMADSONIC=${TCPMADSONIC:-4040}
 
 /sbin/e-smith/db configuration set madsonic-dlna service TCPPorts $TCPMADSONIC,$TCPPortDlna UDPPorts 1900,$UDPPortDlna access private status enabled
 /sbin/e-smith/signal-event firewall-adjust
