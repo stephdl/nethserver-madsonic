@@ -23,6 +23,7 @@ madsonic is an application adapted as a contrib for nethserver
 %changelog
 * Mon Nov 27 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.12-1.ns7
 - Start at boot a script to find the random port of madsonic
+- Wait now 60 maximum
  
 * Sat Nov 25 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.11-1.ns7
 - Open the TCP port of madsonic to private
