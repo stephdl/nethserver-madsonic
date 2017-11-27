@@ -23,6 +23,7 @@ madsonic is an application adapted as a contrib for nethserver
 %changelog
 * Mon Nov 27 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.12-1.ns6
 - Start the script to find and open port in the firewall at boot
+- wait 60 seconds maximum
 
 * Sat Nov 25 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.11-1.ns6
 - Open the TCP port of madsonic to private
