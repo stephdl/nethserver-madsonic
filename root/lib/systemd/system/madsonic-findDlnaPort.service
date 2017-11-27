@@ -1,0 +1,18 @@
+#
+#     Find the random ports of madsonic at boot
+#
+#     Stephane de Labrusse <stephdl@de-labrusse.fr>
+#
+[Unit]
+Description=Find Dlna port madsonic
+Wants=multi-user.target
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/etc/e-smith/events/actions/nethserver-madsonic-find-dlna-port
+StandardOutput=syslog
+
+
+[Install]
+WantedBy=multi-user.target

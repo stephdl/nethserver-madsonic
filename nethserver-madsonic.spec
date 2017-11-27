@@ -1,5 +1,5 @@
 %define name nethserver-madsonic
-%define version 0.1.11
+%define version 0.1.12
 %define release 1
 Summary: madsonic is a helpdesk system
 Name: %{name}
@@ -21,6 +21,9 @@ AutoReqProv: no
 madsonic is an application adapted as a contrib for nethserver
 
 %changelog
+* Mon Nov 27 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.12-1.ns7
+- Start at boot a script to find the random port of madsonic
+ 
 * Sat Nov 25 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.11-1.ns7
 - Open the TCP port of madsonic to private
 
@@ -63,6 +66,8 @@ if ! id madsonic >& /dev/null; then
   /usr/sbin/useradd -d /var/madsonic -c "madsonic user" -s /bin/bash -M -r -g madsonic madsonic
 fi
 
+%post
+systemctl enable  madsonic-findDlnaPort.service
 
 %prep
 %setup
