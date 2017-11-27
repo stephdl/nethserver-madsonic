@@ -1,0 +1,6 @@
+
+
+#
+#start the script to find and open port in the firewall (madsonic)
+#
+/etc/e-smith/events/actions/nethserver-madsonic-find-dlna-port
