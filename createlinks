@@ -23,6 +23,12 @@ event_actions($event,
 'nethserver-madsonic-httpd-restart' => '95',
 'nethserver-madsonic-find-dlna-port' => '99');
 
-my $event = 'trusted-networks-modify';
+$event = 'trusted-networks-modify';
 templates2events("/etc/httpd/conf.d/madsonic.conf", $event);
 event_services($event, 'httpd' => 'reload');
+
+$event = 'nethserver-sssd-save';
+templates2events("/etc/samba/smb.conf", $event);
+event_services($event, 'smb' => 'restart');
+event_services($event, 'nmb' => 'restart');
+
