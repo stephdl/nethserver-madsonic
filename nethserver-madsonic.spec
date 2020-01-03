@@ -20,48 +20,6 @@ AutoReqProv: no
 %description
 madsonic is an application adapted as a contrib for nethserver
 
-%changelog
-* Fri Oct 12 2018 stephane de labrusse <stephdl@de-labrusse.fr> 0.1.13.1.ns7
-- Subscribe to the nethserver-sssd-save event
-
-* Mon Nov 27 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.12-1.ns7
-- Start at boot a script to find the random port of madsonic
-- Wait now 60 maximum
- 
-* Sat Nov 25 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.11-1.ns7
-- Open the TCP port of madsonic to private
-
-* Fri Nov 24 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.10-1.ns7
--Handle the multi Nic use case to find the dlna port 
-
-* Sun Nov 22 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.9-1.ns7
-- find the UDP ports for dlna
-
-* Sun Nov 12 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.7-1.ns7
-- translate the error message for bad user
-
-* Sun Nov 12 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.5-1.ns7
-- the action nethserver-madsonic-finf-dlna-port wait 30 seconds maximum
-
-* Sat Nov 11 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.4-1.ns7
-- Find the dlna port and open it in the firewall
-
-* Sun Sep 10 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.3-1.ns7
-- Restart httpd service on trusted-network
-
-* Wed Mar 29 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.2-1.ns7
-- Template expansion on trusted-network
-
-*Tue Mar 14 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.1-1
-- Release for Nethserver 7
-
-* Mon Jun 16 2014 JP Pialasse <tests@pialasse.com> 5.0.3761-1.sme
-- initial import to SME9 contribs
-
-* Wed Nov 20 2013  CONTRIB MAKER <tests@pialasse.com> 5.0.3760-2.sme
-- initial release
-- builds from unchanged .tar.gz 
-
 %pre
 if ! getent group madsonic >& /dev/null; then
   groupadd -f -r madsonic
@@ -108,3 +66,44 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING
 %dir %{_nseventsdir}/%{name}-update
 
+%changelog
+* Fri Oct 12 2018 stephane de labrusse <stephdl@de-labrusse.fr> 0.1.13.1.ns7
+- Subscribe to the nethserver-sssd-save event
+
+* Mon Nov 27 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.12-1.ns7
+- Start at boot a script to find the random port of madsonic
+- Wait now 60 maximum
+ 
+* Sat Nov 25 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.11-1.ns7
+- Open the TCP port of madsonic to private
+
+* Fri Nov 24 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.10-1.ns7
+-Handle the multi Nic use case to find the dlna port 
+
+* Sun Nov 22 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.9-1.ns7
+- find the UDP ports for dlna
+
+* Sun Nov 12 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.7-1.ns7
+- translate the error message for bad user
+
+* Sun Nov 12 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.5-1.ns7
+- the action nethserver-madsonic-finf-dlna-port wait 30 seconds maximum
+
+* Sat Nov 11 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.4-1.ns7
+- Find the dlna port and open it in the firewall
+
+* Sun Sep 10 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.3-1.ns7
+- Restart httpd service on trusted-network
+
+* Wed Mar 29 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.2-1.ns7
+- Template expansion on trusted-network
+
+*Tue Mar 14 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.1-1
+- Release for Nethserver 7
+
+* Mon Jun 16 2014 JP Pialasse <tests@pialasse.com> 5.0.3761-1.sme
+- initial import to SME9 contribs
+
+* Wed Nov 20 2013  CONTRIB MAKER <tests@pialasse.com> 5.0.3760-2.sme
+- initial release
+- builds from unchanged .tar.gz 
